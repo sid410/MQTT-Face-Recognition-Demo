@@ -8,8 +8,8 @@ from mqtt_publish import *
 client = connect_mqtt()
 topic_name = "name"
 
-# Get a reference to webcam #0 (the default one)
-video_capture = cv2.VideoCapture(0)
+# Get a reference to live video stream
+video_capture = cv2.VideoCapture("https://172.31.1.27:8080/video")
 
 # Load a sample picture and learn how to recognize it.
 sid_image = face_recognition.load_image_file("Pics\sid.jpg")
