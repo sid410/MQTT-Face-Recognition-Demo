@@ -12,27 +12,21 @@ topic_name = "name"
 video_capture = cv2.VideoCapture(0)
 
 # Load a sample picture and learn how to recognize it.
-sid_image = face_recognition.load_image_file("sid.jpg")
+sid_image = face_recognition.load_image_file("Pics\sid.jpg")
 sid_face_encoding = face_recognition.face_encodings(sid_image)[0]
 
-# Load a sample picture and learn how to recognize it.
-obama_image = face_recognition.load_image_file("obama.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-
 # Load a second sample picture and learn how to recognize it.
-biden_image = face_recognition.load_image_file("biden.jpg")
-biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
+obama_image = face_recognition.load_image_file("Pics\obama.jpg")
+obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     sid_face_encoding,
-    obama_face_encoding,
-    biden_face_encoding
+    obama_face_encoding
 ]
 known_face_names = [
     "Sid",
-    "Barack Obama",
-    "Joe Biden"
+    "Barack Obama"
 ]
 
 # Initialize some variables
@@ -80,7 +74,7 @@ while True:
     process_this_frame = not process_this_frame
 
 
-    # Display the results then publish to MQTT
+    # Publish to MQTT then Display the results 
     for (top, right, bottom, left), name in zip(face_locations, face_names):
 
         publish(client, topic_name, name)
